@@ -5,7 +5,7 @@ import com.cft.PCstore.service.ProductService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping()
+@RequestMapping(value = "product")
 public class ProductController {
     ProductService productService;
 
@@ -13,12 +13,12 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping(value = "product/{id}")
+    @GetMapping(value = "{id}")
     public Product getById(@PathVariable Long id){
         return productService.getById(id);
     }
 
-    @DeleteMapping(value = "product/{id}")
+    @DeleteMapping(value = "{id}")
     public void deleteById(@PathVariable Long id) {
         productService.deleteById(id);
     }

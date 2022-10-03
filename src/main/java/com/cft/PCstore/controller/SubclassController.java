@@ -5,7 +5,6 @@ import com.cft.PCstore.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.GenericTypeResolver;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
