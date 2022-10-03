@@ -1,13 +1,12 @@
 package com.cft.PCstore.service;
 
-import com.cft.PCstore.model.*;
+import com.cft.PCstore.Exceptions.NotFoundException;
+import com.cft.PCstore.model.Product;
 import com.cft.PCstore.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -20,8 +19,8 @@ public class ProductService {
 
 
 
-    public Product getById(Long id) throws ChangeSetPersister.NotFoundException {
-        return productRepository.findById(id).orElseThrow(ChangeSetPersister.NotFoundException::new); //TODO Exception
+    public Product getById(Long id){
+        return productRepository.findById(id).orElseThrow(NotFoundException::new);
     }
 
     public void deleteById(Long id) {
@@ -35,11 +34,13 @@ public class ProductService {
         productRepository.save(product);
     }
 
-    public void updateProduct(Long id, Product product) throws ChangeSetPersister.NotFoundException {
+    public void updateProduct(Long id, Product product){
         Product productFromDB = getById(id);
         if(productFromDB.getClass() == product.getClass()){
             product.setId(id);
             productRepository.save(product);
+        }else {
+            throw new NotFoundException();
         }
     }
 

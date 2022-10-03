@@ -7,12 +7,13 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id", nullable = false)
+    @Column(nullable = false)
     private Long id;
+
     private String serialNumber;
     private String manufacturer;
     private Double price;
